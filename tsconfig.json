@@ -4,7 +4,8 @@
     "paths": {
       "@database": ["database/db.ts"],
       "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/Layouts/*"]
+      "@layouts/*": ["src/Layouts/*"],
+      "@styles/*": ["src/styles/*"]
     },
     "target": "es5",
     "lib": [
