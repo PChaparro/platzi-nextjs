@@ -1,3 +1,5 @@
+import AvocadoAbout from "@components/AvocadoDetails/AvocadoAbout/AvocadoAbout";
+import AvocadoHeader from "@components/AvocadoDetails/AvocadoHeader/AvocadoHeader";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -19,11 +21,18 @@ const Product = () => {
     getAvocado();
   }, []);
 
-  return (
-    <div>
-      <h1>Product: [{avocado?.id}]</h1>
-      <h2>{avocado?.name}</h2>
-    </div>
+  return avocado ? (
+    <main>
+      <AvocadoHeader
+        image={avocado?.image}
+        name={avocado?.name}
+        price={avocado?.price}
+        sku={avocado?.sku}
+      />
+      <AvocadoAbout attributes={avocado?.attributes} />
+    </main>
+  ) : (
+    <p className="text-center">Unable to load the requested item 😥</p>
   );
 };
 
