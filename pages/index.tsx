@@ -1,31 +1,29 @@
 import { useEffect, useState } from "react";
-import Navbar from "../src/components/Navbar/Navbar";
 
 const Home = () => {
   const [avocados, setAvocados] = useState<TProduct[]>([]);
 
   useEffect(() => {
     const getAvocados = async () => {
-      const response = await window.fetch('/api/avocados')
-      const json = await response.json()
-      setAvocados(json.data)
-    }
+      const response = await window.fetch("/api/avocados");
+      const json = await response.json();
+      setAvocados(json.data);
+    };
 
-    getAvocados()
-  }, [])
+    getAvocados();
+  }, []);
 
   return (
-    <>
-      <Navbar />
-      <div>
-        <h1>Static and basic home page.</h1>
-        {avocados.map((avocado) => {
-          return <article key={avocado.id}>
+    <div>
+      <h1>Static and basic home page.</h1>
+      {avocados.map((avocado) => {
+        return (
+          <article key={avocado.id}>
             <h2>{avocado.name}</h2>
           </article>
-        })}
-      </div>
-    </>
+        );
+      })}
+    </div>
   );
 };
 
