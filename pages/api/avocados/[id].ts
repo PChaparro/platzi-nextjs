@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import DB from "../../../database/db";
+import DB from "@database";
 const db = new DB();
 
 const avocadoById = async (req: NextApiRequest, res: NextApiResponse) => {

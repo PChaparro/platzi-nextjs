@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 
-import DB from "../../../database/db";
+import DB from "@database";
 const db = new DB();
 
 const allAvocados = async (req: IncomingMessage, res: ServerResponse) => {
