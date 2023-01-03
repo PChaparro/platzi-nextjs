@@ -1,8 +1,13 @@
+import Navbar from "../src/components/Navbar/Navbar";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Static and basic home page.</h1>
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <h1>Static and basic home page.</h1>
+      </div>
+    </>
   );
 };
 
