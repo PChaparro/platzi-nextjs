@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const Product = () => {
-  const [avocado, setAvocado] = useState<TProduct>(null)
+  const [avocado, setAvocado] = useState<TProduct>(null);
 
   // Access the param from the url
   const router = useRouter();
@@ -10,18 +10,19 @@ const Product = () => {
 
   useEffect(() => {
     const getAvocado = async () => {
-      const response = await window.fetch(`/api/avocados/${id}`)
-      const data = await response.json()
-      setAvocado(data)
-    }
+      const response = await window.fetch(`/api/avocados/${id}`);
+      const data = await response.json();
 
-    getAvocado()
-  }, [])
+      setAvocado(data);
+    };
+
+    getAvocado();
+  }, []);
 
   return (
     <div>
-      <h1>Product: [{avocado.id}]</h1>
-      <h2>{avocado.name}</h2>
+      <h1>Product: [{avocado?.id}]</h1>
+      <h2>{avocado?.name}</h2>
     </div>
   );
 };
