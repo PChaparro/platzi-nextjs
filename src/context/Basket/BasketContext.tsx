@@ -7,6 +7,7 @@ export type TBasket = Array<TBasketItem>;
 const contextInitialValue = {
   basket: [] as TBasket,
   addToBasket: (item: TBasketItem) => {},
+  removeFromBasket: (item: TBasketItem) => {},
 };
 
 export const BasketContext = createContext(contextInitialValue);
@@ -21,8 +22,12 @@ export const BasketProvider = ({ children }) => {
     basketDispatcher({ type: "ADD", payload: item });
   };
 
+  const removeFromBasket = (item: TBasketItem) => {
+    basketDispatcher({ type: "REMOVE", payload: item });
+  };
+
   return (
-    <BasketContext.Provider value={{ basket, addToBasket }}>
+    <BasketContext.Provider value={{ basket, addToBasket, removeFromBasket }}>
       {children}
     </BasketContext.Provider>
   );

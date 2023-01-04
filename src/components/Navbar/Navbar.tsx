@@ -4,7 +4,6 @@ import { BasketContext } from "@context/Basket/BasketContext";
 
 const Navbar = () => {
   const { basket } = useContext(BasketContext);
-  console.log(basket, basket.length);
 
   return (
     <nav className="flex h-16 justify-between items-center border-b-2 py-4 mb-4">
@@ -16,10 +15,10 @@ const Navbar = () => {
         />{" "}
         Avo Store
       </Link>
-      <div>
+      <Link href="/basket">
         <img className="inline" src="/icons/basket.svg" alt="" /> Basket (
         {basket.length})
-      </div>
+      </Link>
     </nav>
   );
 };
