@@ -5,7 +5,8 @@
       "@database": ["database/db.ts"],
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/Layouts/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@context/*": ["src/context/*"]
     },
     "target": "es5",
     "lib": [
