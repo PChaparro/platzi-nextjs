@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
 import AvocadoCard from "@components/AvocadoCard/AvocadoCard";
+import fetch from "isomorphic-unfetch";
 
-const Home = () => {
-  const [avocados, setAvocados] = useState<TProduct[]>([]);
+export const getServerSideProps = async (params) => {
+  const protocol = process.env.PROTOCOL;
+  const target = process.env.BACKEND_URL;
 
-  useEffect(() => {
-    const getAvocados = async () => {
-      const response = await window.fetch("/api/avocados");
-      const json = await response.json();
-      setAvocados(json.data);
-    };
+  const response = await fetch(`${protocol}${target}/api/avocados`);
+  const { data }: TAPIAvoResponse = await response.json();
 
-    getAvocados();
-  }, []);
+  return {
+    props: {
+      avocados: data,
+    },
+  };
+};
 
+const Home = ({ avocados }: { avocados: TProduct[] }) => {
   return (
     <div>
       <h1 className="text-2xl font-bold my-4">Platzi avocados</h1>
