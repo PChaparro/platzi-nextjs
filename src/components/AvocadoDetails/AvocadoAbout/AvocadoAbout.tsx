@@ -12,7 +12,9 @@ const AvocadoAbout = ({ attributes }: IProps) => {
       <p className="text-justify">{attributes?.description}</p>
       <table className="border-2 border-neutral-200">
         <thead className="font-bold block p-2">
-          <tr>Attributes</tr>
+          <tr>
+            <th>Attributes</th>
+          </tr>
         </thead>
         <AvocadoAttributes attributes={attributes} />
       </table>

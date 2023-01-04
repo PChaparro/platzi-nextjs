@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useContext } from "react";
 import { FiTrash2 } from "react-icons/fi";
 import { BasketContext, TBasketItem } from "@context/Basket/BasketContext";
@@ -17,7 +18,11 @@ const BasketItem = ({ avocado }: IProps) => {
     <article className="flex gap-4 border-2 p-2 relative">
       <img className="h-32" src={avocado.image} alt={avocado.name} />
       <div>
-        <h2 className="text-green-700 font-bold capitalize">{avocado.name}</h2>
+        <Link href={`/avocado/${avocado.id}`}>
+          <h2 className="text-green-700 font-bold capitalize">
+            {avocado.name}
+          </h2>
+        </Link>
         <p className="text-sm text-neutral-600">
           $ {avocado.price} x {avocado.amount}
         </p>

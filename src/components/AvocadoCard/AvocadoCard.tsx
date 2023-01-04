@@ -6,7 +6,7 @@ interface IProps {
 
 const AvocadoCard = ({ product }: IProps) => {
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/avocado/${product.id}`}>
       <article className="h-full text-center border-2 border-neutral-200 rounded-lg p-4 hover:scale-105 hover:shadow-lg transition-all">
         <img src={product.image} alt={product.name} />
         <h2 className="font-bold text-lg  my-2">{product.name}</h2>
