@@ -1,26 +1,47 @@
+import { GetStaticProps } from "next";
+import fetch from "isomorphic-unfetch";
 import AvocadoAbout from "@components/AvocadoDetails/AvocadoAbout/AvocadoAbout";
 import AvocadoHeader from "@components/AvocadoDetails/AvocadoHeader/AvocadoHeader";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
-const Product = () => {
-  const [avocado, setAvocado] = useState<TProduct>(null);
+// Get all the avocados to obtain the ids we
+// want to generate statically
+export const getStaticPaths = async () => {
+  const protocol = process.env.PROTOCOL;
+  const target = process.env.BACKEND_URL;
 
-  // Access the param from the url
-  const router = useRouter();
-  const { id } = router.query;
+  const response = await fetch(`${protocol}${target}/api/avocados`);
+  const { data }: TAPIAvoResponse = await response.json();
 
-  useEffect(() => {
-    const getAvocado = async () => {
-      const response = await window.fetch(`/api/avocados/${id}`);
-      const data = await response.json();
+  return {
+    paths: data.map((avocado) => {
+      return {
+        params: {
+          id: avocado.id,
+        },
+      };
+    }),
+    // Incremental static generation
+    // 404 for everything else
+    fallback: false,
+  };
+};
 
-      setAvocado(data);
-    };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const protocol = process.env.PROTOCOL;
+  const target = process.env.BACKEND_URL;
 
-    getAvocado();
-  }, []);
+  const id = params?.id as string;
+  const response = await fetch(`${protocol}${target}/api/avocados/${id}`);
+  const data: TProduct = await response.json();
 
+  return {
+    props: {
+      avocado: data,
+    },
+  };
+};
+
+const Product = ({ avocado }: { avocado: TProduct }) => {
   return avocado ? (
     <main>
       <AvocadoHeader avocado={avocado} />
