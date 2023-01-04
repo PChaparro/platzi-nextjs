@@ -1,5 +1,6 @@
-import AvocadoCard from "@components/AvocadoCard/AvocadoCard";
+import Head from "next/head";
 import fetch from "isomorphic-unfetch";
+import AvocadoCard from "@components/AvocadoCard/AvocadoCard";
 
 export const getStaticProps = async (params) => {
   const protocol = process.env.PROTOCOL;
@@ -17,14 +18,19 @@ export const getStaticProps = async (params) => {
 
 const Home = ({ avocados }: { avocados: TProduct[] }) => {
   return (
-    <div>
-      <h1 className="text-2xl font-bold my-4">Platzi avocados</h1>
-      <section className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {avocados.map((avocado) => (
-          <AvocadoCard key={avocado.id} product={avocado} />
-        ))}
-      </section>
-    </div>
+    <>
+      <Head>
+        <title>Avo Store: Home</title>
+      </Head>
+      <div>
+        <h1 className="text-2xl font-bold my-4">Platzi avocados</h1>
+        <section className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {avocados.map((avocado) => (
+            <AvocadoCard key={avocado.id} product={avocado} />
+          ))}
+        </section>
+      </div>
+    </>
   );
 };
 

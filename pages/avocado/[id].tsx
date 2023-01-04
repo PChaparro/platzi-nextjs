@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import AvocadoAbout from "@components/AvocadoDetails/AvocadoAbout/AvocadoAbout";
 import AvocadoHeader from "@components/AvocadoDetails/AvocadoHeader/AvocadoHeader";
@@ -42,13 +43,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const Product = ({ avocado }: { avocado: TProduct }) => {
-  return avocado ? (
-    <main>
-      <AvocadoHeader avocado={avocado} />
-      <AvocadoAbout attributes={avocado.attributes} />
-    </main>
-  ) : (
-    <p className="text-center">Unable to load the requested item 😥</p>
+  return (
+    <>
+      <Head>
+        <title>{`Avo Store: ${avocado.name}`}</title>
+        <meta
+          name="description"
+          content={`${avocado.name}: ${avocado.attributes.description}`}
+        />
+      </Head>
+      {avocado ? (
+        <main>
+          <AvocadoHeader avocado={avocado} />
+          <AvocadoAbout attributes={avocado.attributes} />
+        </main>
+      ) : (
+        <p className="text-center">Unable to load the requested item 😥</p>
+      )}
+    </>
   );
 };
 
