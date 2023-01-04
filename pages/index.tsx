@@ -8,7 +8,6 @@ const Home = () => {
     const getAvocados = async () => {
       const response = await window.fetch("/api/avocados");
       const json = await response.json();
-      console.table(json);
       setAvocados(json.data);
     };
 

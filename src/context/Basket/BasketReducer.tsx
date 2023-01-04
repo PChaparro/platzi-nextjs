@@ -10,7 +10,17 @@ export const basketReducer = (state: TBasket, action: TAction) => {
 
   switch (action.type) {
     case "ADD":
-      return [...state, action.payload];
+      const alreadyExists = state.some((item) => item.id === payload.id);
+
+      if (alreadyExists) {
+        return state.map((item) =>
+          item.id === payload.id
+            ? { ...item, amount: item.amount + payload.amount }
+            : item
+        );
+      } else {
+        return [...state, payload];
+      }
     case "REMOVE":
       return state.filter((item) => item.id !== payload.id);
     default:

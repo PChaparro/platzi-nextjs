@@ -11,7 +11,9 @@ const AvocadoAbout = ({ attributes }: IProps) => {
       <h2 className="font-bold">About this avocado:</h2>
       <p className="text-justify">{attributes?.description}</p>
       <table className="border-2 border-neutral-200">
-        <thead className="font-bold block p-2">Attributes</thead>
+        <thead className="font-bold block p-2">
+          <tr>Attributes</tr>
+        </thead>
         <AvocadoAttributes attributes={attributes} />
       </table>
     </section>

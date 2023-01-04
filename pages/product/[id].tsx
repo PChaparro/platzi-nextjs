@@ -23,13 +23,8 @@ const Product = () => {
 
   return avocado ? (
     <main>
-      <AvocadoHeader
-        image={avocado?.image}
-        name={avocado?.name}
-        price={avocado?.price}
-        sku={avocado?.sku}
-      />
-      <AvocadoAbout attributes={avocado?.attributes} />
+      <AvocadoHeader avocado={avocado} />
+      <AvocadoAbout attributes={avocado.attributes} />
     </main>
   ) : (
     <p className="text-center">Unable to load the requested item 😥</p>
