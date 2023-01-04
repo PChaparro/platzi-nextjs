@@ -1,7 +1,7 @@
 import AvocadoCard from "@components/AvocadoCard/AvocadoCard";
 import fetch from "isomorphic-unfetch";
 
-export const getServerSideProps = async (params) => {
+export const getStaticProps = async (params) => {
   const protocol = process.env.PROTOCOL;
   const target = process.env.BACKEND_URL;
 
